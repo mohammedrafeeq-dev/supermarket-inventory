@@ -1,0 +1,43 @@
+# Project: Super market
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = Costumer.o Employee.o Inventory.o personAccount.o SalesTransaction.o testSupermarket.o
+LINKOBJ  = Costumer.o Employee.o Inventory.o personAccount.o SalesTransaction.o testSupermarket.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = "Super market.exe"
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+Costumer.o: Costumer.cpp
+	$(CPP) -c Costumer.cpp -o Costumer.o $(CXXFLAGS)
+
+Employee.o: Employee.cpp
+	$(CPP) -c Employee.cpp -o Employee.o $(CXXFLAGS)
+
+Inventory.o: Inventory.cpp
+	$(CPP) -c Inventory.cpp -o Inventory.o $(CXXFLAGS)
+
+personAccount.o: personAccount.cpp
+	$(CPP) -c personAccount.cpp -o personAccount.o $(CXXFLAGS)
+
+SalesTransaction.o: SalesTransaction.cpp
+	$(CPP) -c SalesTransaction.cpp -o SalesTransaction.o $(CXXFLAGS)
+
+testSupermarket.o: testSupermarket.cpp
+	$(CPP) -c testSupermarket.cpp -o testSupermarket.o $(CXXFLAGS)
