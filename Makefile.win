@@ -21,6 +21,13 @@ all: all-before $(BIN) all-after
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
 
+test: unit_tests
+	@echo "All tests passed."
+
+unit_tests: $(OBJ)
+	$(CPP) tests/unit_tests.cpp Inventory.cpp -o unit_tests.exe $(CXXFLAGS)
+	./unit_tests.exe
+
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
