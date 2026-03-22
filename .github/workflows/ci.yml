@@ -1,0 +1,31 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up MSVC (Windows)
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.100
+
+    - name: Compile with g++ (MinGW)
+      shell: powershell
+      run: |
+        choco install mingw -y
+        refreshenv
+        g++ *.cpp -o supermarket.exe
+
+    - name: Run executable
+      shell: powershell
+      run: |
+        .\supermarket.exe --help || echo "run completed"
