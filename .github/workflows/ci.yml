@@ -25,7 +25,13 @@ jobs:
         refreshenv
         g++ *.cpp -o supermarket.exe
 
-    - name: Run executable
+    - name: Run main executable
       shell: powershell
       run: |
         .\supermarket.exe --help || echo "run completed"
+
+    - name: Compile and run unit tests
+      shell: powershell
+      run: |
+        g++ tests\unit_tests.cpp Inventory.cpp -o unit_tests.exe
+        .\unit_tests.exe
